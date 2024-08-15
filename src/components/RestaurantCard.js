@@ -1,7 +1,7 @@
 import { ASSETS_URL } from "../utils/constants";
 
 const RestaurantCard = (props) => {
-    const { resData } = props;
+    const { resData, handleClick } = props;
 
     const {
       cloudinaryImageId,
@@ -14,7 +14,7 @@ const RestaurantCard = (props) => {
   
     // console.log("resData", resData?.info);
     return (
-      <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+      <div className="res-card" onClick={handleClick} style={{ backgroundColor: "#f0f0f0" }}>
         <img
           className="res-logo"
           alt="res-logo"

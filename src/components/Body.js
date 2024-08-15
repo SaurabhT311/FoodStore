@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData"; //names exports are always gonna import like this
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Shimmer from "./Shimmer";
 
 //It's not recommended to use index as key but uou can use it, if necessary
@@ -9,6 +10,7 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchSwiggyData();
@@ -26,6 +28,13 @@ const Body = () => {
     );
     setFilteredRestaurant(jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
+
+
+  const handleClick = (id) => {
+    navigate(`/restaurant/${id}`)
+  }
+
+
   return (
     listOfRestaurants?.length === 0 ? (
     <Shimmer />
@@ -69,7 +78,9 @@ const Body = () => {
       <div className="res-container">
         {console.log("rest",listOfRestaurants)}
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
+          <RestaurantCard key={restaurant?.info?.id} resData={restaurant} 
+          handleClick={() => handleClick(restaurant?.info?.id)}
+          />
         ))}
       </div>
     </div>
