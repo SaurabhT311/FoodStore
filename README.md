@@ -17,13 +17,3 @@ Footer
 - links
 - Copyright
    */
-
-# Two Types of Export/Import
-
-# Default Export/Import
-    # export defualt name/component/function
-    # import Component from "path"
-
-# Named Export/Import
--   export const component/name/function
-    import {name/function/component} from "path
