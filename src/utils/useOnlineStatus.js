@@ -14,6 +14,7 @@ const useOnlineStatus = () => {
     });
   }, []);
 
+  //boolean value
   return status;
 };
 
