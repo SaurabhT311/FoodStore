@@ -24,8 +24,7 @@ const Body = () => {
   const handleClick = (id) => {
     navigate(`/restaurant/${id}`);
   };
-console.log("online", onlineStatus);
-  if (onlineStatus === false){
+  if (onlineStatus === false) {
     return (
       <h1>
         Looks like you're offline!! Please check your internet connection.
@@ -37,17 +36,18 @@ console.log("online", onlineStatus);
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex items-center">
+        <div className="search mx-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
+            className="px-4 py-2 bg-green-100 m-4 rounded-lg"
             onClick={() => {
               const filteredRestaurant = listRestaurants.filter((res) =>
                 res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
@@ -59,7 +59,7 @@ console.log("online", onlineStatus);
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="px-4 py-2 bg-gray-100 rounded-lg"
           onClick={() => {
             const filteredList = listRestaurants.filter(
               (res) => res?.info?.avgRating > 4.3
@@ -70,14 +70,17 @@ console.log("online", onlineStatus);
           Top Rated Restaurants
         </button>
       </div>
-      <div className="res-container">
-        {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard
-            key={restaurant?.info?.id}
-            resData={restaurant}
-            handleClick={() => handleClick(restaurant?.info?.id)}
-          />
-        ))}
+      <div className="flex flex-wrap">
+        {Array.isArray(filteredRestaurant) &&
+          filteredRestaurant &&
+          filteredRestaurant.length > 0 &&
+          filteredRestaurant.map((restaurant) => (
+            <RestaurantCard
+              key={restaurant?.info?.id}
+              resData={restaurant}
+              handleClick={() => handleClick(restaurant?.info?.id)}
+            />
+          ))}
       </div>
     </div>
   );

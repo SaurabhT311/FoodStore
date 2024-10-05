@@ -6,21 +6,21 @@ const Header = () => {
   const navigate = useNavigate();
   const onlineStatus = useOnlineStatus();
     return (
-      <div className="header">
+      <div className="flex justify-between bg-pink-50 shadow-lg">
         <div>
           <img
-            className="logo"
+            className="w-56"
             src={LOGO_URL}
           />
         </div>
-        <div className="nav-items">
-          <ul style={{cursor: "pointer"}}>
-            <li>Online Status:{onlineStatus ? "🟢" : "🔴"}</li>
-            <li onClick={() => navigate("/")}>Home</li>
-            <li onClick={() => navigate("/about")}>About Us</li>
-            <li onClick={() => navigate("/contact-us")}>Contact Us</li>
-            <li onClick={() => navigate("/grocery")}>Grocery</li>
-            <li onClick={() => navigate("/cart")}>Cart</li>
+        <div className="flex items-center">
+          <ul className="flex p-4 m-4" style={{cursor: "pointer"}}>
+            <li className="px-4">Online Status:{onlineStatus ? "🟢" : "🔴"}</li>
+            <li className="px-4" onClick={() => navigate("/")}>Home</li>
+            <li className="px-4" onClick={() => navigate("/about")}>About Us</li>
+            <li className="px-4" onClick={() => navigate("/contact-us")}>Contact Us</li>
+            <li className="px-4" onClick={() => navigate("/grocery")}>Grocery</li>
+            <li className="px-4" onClick={() => navigate("/cart")}>Cart</li>
             <button className="login">Login</button>
           </ul>
         </div>
