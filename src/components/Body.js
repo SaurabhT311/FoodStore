@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import resList from "../utils/mockData"; //names exports are always gonna import like this
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,8 @@ const Body = () => {
   const listRestaurants = useRestaurantList();
   const onlineStatus = useOnlineStatus();
 
+  const PromotedRestaurantCard = withPromotedLabel(RestaurantCard);
+
   useEffect(() => {
     setFilteredRestaurant(listRestaurants);
   }, [listRestaurants]);
@@ -31,7 +33,6 @@ const Body = () => {
       </h1>
     );
   }
-
   return listRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
@@ -74,13 +75,22 @@ const Body = () => {
         {Array.isArray(filteredRestaurant) &&
           filteredRestaurant &&
           filteredRestaurant.length > 0 &&
-          filteredRestaurant.map((restaurant) => (
-            <RestaurantCard
-              key={restaurant?.info?.id}
-              resData={restaurant}
-              handleClick={() => handleClick(restaurant?.info?.id)}
-            />
-          ))}
+          filteredRestaurant.map((restaurant) =>
+            //If restaurant is promoted then use new component or else use normal
+            restaurant?.info?.promoted ? (
+              <PromotedRestaurantCard
+                key={restaurant?.info?.id}
+                resData={restaurant}
+                handleClick={() => handleClick(restaurant?.info?.id)}
+              />
+            ) : (
+              <RestaurantCard
+                key={restaurant?.info?.id}
+                resData={restaurant}
+                handleClick={() => handleClick(restaurant?.info?.id)}
+              />
+            )
+          )}
       </div>
     </div>
   );
