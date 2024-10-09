@@ -19,7 +19,7 @@ const RestaurantCard = (props) => {
       onClick={handleClick}
     >
       <img
-        className="rounded-md"
+        className="rounded-md h-[290px] object-cover"
         alt="res-logo"
         src={ASSETS_URL + cloudinaryImageId}
       />
