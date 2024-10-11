@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import ItemList from "./ItemList";
 
-const CategoryList = ({ categoryTitle, itemCards }) => {
-    const [showItems, setShowItems] = useState(false);
-
+const CategoryList = ({ categoryTitle, itemCards, showItems, setShowItemIndex }) => {
+    
     const handleClick = () => {
-        setShowItems(!showItems)
+        setShowItemIndex();
     }
   
   return (
@@ -15,7 +14,7 @@ const CategoryList = ({ categoryTitle, itemCards }) => {
           {categoryTitle}
           {itemCards?.length > 0 && `(${itemCards.length})`}
         </span>
-        {itemCards?.length > 0 && <span>⬇️</span>}
+        {itemCards?.length > 0 && <span>{showItems ? "⬆️" : "⬇️"}</span>}
       </div>
       {itemCards?.length > 0 && showItems && <ItemList items={itemCards} />}
     </>
