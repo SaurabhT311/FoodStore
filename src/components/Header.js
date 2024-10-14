@@ -1,10 +1,13 @@
 import { LOGO_URL } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/userContext";
+import { useContext } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
   const onlineStatus = useOnlineStatus();
+  const {loggedInUser} = useContext(UserContext);
     return (
       <div className="flex justify-between bg-pink-50 shadow-lg">
         <div>
@@ -22,6 +25,7 @@ const Header = () => {
             <li className="px-4" onClick={() => navigate("/grocery")}>Grocery</li>
             <li className="px-4" onClick={() => navigate("/cart")}>Cart</li>
             <button className="login">Login</button>
+            <li className="px-4 font-bold">{loggedInUser}</li>
           </ul>
         </div>
       </div>

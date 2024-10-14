@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { ASSETS_URL } from "../utils/constants";
+import UserContext from "../utils/userContext";
 
 const RestaurantCard = (props) => {
   const { resData, handleClick } = props;
@@ -11,6 +13,8 @@ const RestaurantCard = (props) => {
     avgRating,
     sla,
   } = resData?.info;
+
+  const {loggedInUser} = useContext(UserContext)
 
   // console.log("resData", resData?.info);
   return (
@@ -28,6 +32,7 @@ const RestaurantCard = (props) => {
       <h4>{costForTwoString}</h4>
       <h4>{avgRating} stars</h4>
       <h4>{sla?.deliveryTime} minutes</h4>
+      <h4 className="font-bold">UserName: {loggedInUser} </h4>
     </div>
   );
 };

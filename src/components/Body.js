@@ -1,11 +1,12 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import resList from "../utils/mockData"; //names exports are always gonna import like this
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { SWIGGY_API } from "../utils/constants";
 import useRestaurantList from "../utils/useRestaurantList";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/userContext";
 
 //It's not recommended to use index as key but uou can use it, if necessary
 //not using keys (not accceptable) <<<< index <<<<<< unique id(best)
@@ -16,6 +17,7 @@ const Body = () => {
 
   const listRestaurants = useRestaurantList();
   const onlineStatus = useOnlineStatus();
+  const {loggedInUser, setUserName} = useContext(UserContext)
 
   const PromotedRestaurantCard = withPromotedLabel(RestaurantCard);
 
@@ -70,6 +72,11 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        <div className="flex px-4 gap-2 items-center">
+          <label>UserName: </label>
+          <input className="border border-black p-2 h-8" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}/>
+          {/* <button className="p-2 bg-gray-200 rounded-md" >Submit</button> */}
+        </div>
       </div>
       <div className="flex flex-wrap">
         {Array.isArray(filteredRestaurant) &&
