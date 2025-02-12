@@ -72,11 +72,11 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
-        <div className="flex px-4 gap-2 items-center">
+        {/* <div className="flex px-4 gap-2 items-center">
           <label>UserName: </label>
           <input className="border border-black p-2 h-8" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}/>
-          {/* <button className="p-2 bg-gray-200 rounded-md" >Submit</button> */}
-        </div>
+          <button className="p-2 bg-gray-200 rounded-md" >Submit</button>
+        </div> */}
       </div>
       <div className="flex flex-wrap">
         {Array.isArray(filteredRestaurant) &&

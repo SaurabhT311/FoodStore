@@ -1,7 +1,17 @@
 import React from "react";
 import { ASSETS_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
+
+  const dispatch = useDispatch();
+
+
+  const handleClickAdd = (item) => {
+    console.log("item", item);
+    dispatch(addItem(item));
+  }
 
   return (
     <div>
@@ -33,7 +43,7 @@ const ItemList = ({ items }) => {
                 src={ASSETS_URL + item?.card?.info?.imageId}
               />
               <div className="absolute ">
-                <button className="p-2 w-24 flex bg-white mx-16 rounded-lg shadow-lg font-bold items-center justify-center relative top-3 text-green-600">
+                <button onClick={() => handleClickAdd(item)} className="p-2 w-24 flex bg-white mx-16 rounded-lg shadow-lg font-bold items-center justify-center relative top-3 text-green-600">
                   ADD
                 </button>
               </div>
