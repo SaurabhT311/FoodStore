@@ -17,7 +17,7 @@ const ItemList = ({ items }) => {
     <div>
       {items.map((item, index) => (
         <>
-          <div
+          <div data-testid="food-item"
             className={`p-2 text-left flex justify-between ${
               index !== items.length - 1 ? "border-b-2 border-slate-300" : ""
             }`}

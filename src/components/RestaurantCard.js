@@ -9,14 +9,12 @@ const RestaurantCard = (props) => {
     cloudinaryImageId,
     name,
     cuisines,
-    costForTwoString,
+    costForTwo,
     avgRating,
     sla,
   } = resData?.info;
 
   const {loggedInUser} = useContext(UserContext)
-
-  // console.log("resData", resData?.info);
   return (
     <div
       className="m-4 p-4 w-[270px] rounded-md bg-gray-100 hover:bg-gray-200 cursor-pointer"
@@ -29,7 +27,7 @@ const RestaurantCard = (props) => {
       />
       <h3 className="font-bold py-4 text-lg">{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
-      <h4>{costForTwoString}</h4>
+      <h4>{costForTwo}</h4>
       <h4>{avgRating} stars</h4>
       <h4>{sla?.deliveryTime} minutes</h4>
       {/* <h4 className="font-bold">UserName: {loggedInUser} </h4> */}
@@ -40,6 +38,7 @@ const RestaurantCard = (props) => {
 //Higher Order Components using functional component
 // input => RestaurantCard => RestaurantCardPromoted (output)
 
+// Feature that swiggy don't use currently
 export const withPromotedLabel = (RestaurantCard) => {
   return (props) => {
     //returning a new component
